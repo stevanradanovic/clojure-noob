@@ -6,6 +6,12 @@
   [& args]
   (println "Hello, World!"))
 
-(defn scratch
-  [this]
-  (println this))
+(defn announce-treasure-location
+  [{lat :lat lng :lng}]
+  (println (str "Treasure lat: " lat))
+  (println (str "Treasure lng: " lng)))
+
+(defn announce-treasure-location-alt
+  [{:keys [lat lng]}]
+  (println (str "Treasure lat: " lat))
+  (println (str "Treasure lng: " lng)))
