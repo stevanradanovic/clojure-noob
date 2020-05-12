@@ -46,7 +46,20 @@
           []
           asym-body-parts))
 
+(defn hit
+  [asym-body-parts]
+  (let [sym-parts (better-symmetrize-body-parts asym-body-parts)
+        body-part-size-sum (reduce + (map :size sym-parts))
+        target (rand body-part-size-sum)]
+    (loop [[part & remaining] sym-parts
+           accumulated-size (:size part)]
+        (if (> accumulated-size target)
+          part
+          (recur remaining (+ accumulated-size (:size (first remaining))))))))
+
 (defn -main
-  "I don't do a whole lot ... but I can smack some hobbits around!"
-  [& args]
-  (println "Smackity smack!"))
+  "I don't do a whole lot... But I can smack some hobbits around!"
+  []
+  (println "Smackity smack!")
+  (println (hit asym-hobbit-body-parts))
+  (println "We're gonna hit him just once... We're not animals!"))
