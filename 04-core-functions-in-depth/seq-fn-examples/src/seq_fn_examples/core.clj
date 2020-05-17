@@ -5,9 +5,9 @@
 (defn my-map
   "Map implemented using reduce"
   [func coll]
-  (reduce (fn [new-coll first]
-            (into new-coll (func first)))
-          #()
+  (reduce (fn [new-coll elem]
+            (conj new-coll (func elem)))
+          []
           coll))
 
 
