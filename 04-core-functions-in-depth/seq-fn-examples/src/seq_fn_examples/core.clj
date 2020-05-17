@@ -14,4 +14,5 @@
 (defn -main
   "I don't do a whole lot ... yet."
   []
+  (println "123")
   (println "My-map increment [1 2 3]:" (my-map inc [1 2 3])))
