@@ -53,4 +53,4 @@
   (println "Sum, count and avg for [42 0 7]:" (stats [42 0 7]))
   (println "My-map increment [1 2 3]:" (my-map inc [1 2 3]))
   (println "My-filter even from [1 2 3 4]:" (my-filter #(= (mod % 2) 0) [1 2 3 4]))
-  (println "My-conj [1 2 3] and 4 5:" (my-conj [1 2 3] 4 5)))
+  (println "My-conj [1 2 3] and 4 5 6:" (my-conj [1 2 3] 4 5 6)))
