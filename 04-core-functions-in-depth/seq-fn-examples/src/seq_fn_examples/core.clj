@@ -21,8 +21,9 @@
   "filter implemented using reduce"
   [cond coll]
   (reduce (fn [new-coll elem]
-            (when (cond elem)
-              (conj new-coll elem)))
+            (if (cond elem)
+              (conj new-coll elem)
+              new-coll))
           []
           coll))
 
