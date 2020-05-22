@@ -27,6 +27,15 @@
           []
           coll))
 
+(defn my-some
+  "some implemented using reduce"
+  [cond coll]
+  (reduce (fn [_ elem]
+            (if (cond elem)
+              (reduced (cond elem))
+              nil))
+          coll))
+
 ;; Implement conj using into, and vice-versa
 (defn my-conj
   "conj implemented using into"
