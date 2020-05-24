@@ -42,10 +42,10 @@
   [coll & additions]
   (into coll additions))
 
-;; (defn my-into
-;;   "into implemented using conj"
-;;   [coll additions]
-;;   (conj coll ))
+(defn my-into
+  "into implemented using conj"
+  [coll additions]
+  (apply conj coll additions))
 
 (defn -main
   "I don't do a whole lot ... yet."
