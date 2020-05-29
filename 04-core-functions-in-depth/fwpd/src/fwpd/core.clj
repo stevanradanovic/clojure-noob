@@ -31,6 +31,11 @@
                  (map vector vamp-keys unmapped-row)))
        rows))
 
+(defn validate
+  "Validate that each map in collection contains name and glitter index"
+  [coll]
+  (every? #(and (:name %) (:glitter-index %)) coll))
+
 (defn glitter-filter
   [minimum-glitter records]
   (map :name (filter #(>= (:glitter-index %) minimum-glitter) records)))
