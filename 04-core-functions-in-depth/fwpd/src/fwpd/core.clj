@@ -33,7 +33,16 @@
 
 (defn glitter-filter
   [minimum-glitter records]
-  (filter #(>= (:glitter-index %) minimum-glitter) records))
+  (map :name (filter #(>= (:glitter-index %) minimum-glitter) records)))
+
+(defn append
+  "Adds additional suspects to the list"
+  [coll & suspects]
+  (reduce (fn [coll suspect]
+            (conj coll {:name (first suspect)
+                        :glitter-index (second suspect)}))
+          coll
+          suspects))
 
 (defn -main
   "I find vampires!"
