@@ -49,6 +49,14 @@
           coll
           suspects))
 
+(defn vec->csv
+  "Converts vector of maps into CSV string"
+  [coll]
+  (clojure.string/join "\n"
+    (map #(clojure.string/join ","
+            [(:name %) (:glitter-index %)]) 
+         coll)))
+
 (defn -main
   "I find vampires!"
   []
