@@ -35,5 +35,7 @@
 (defn -main
   "I don't do a whole lot... exept showcase functional programming."
   []
-  (println "Regular sum:" (sum-regular (range 1000)) "in" (time (sum-regular (range 1000))))
-  (println "Recursive sum:" (sum-recur (range 1000000)) "in" (time (sum-recur (range 1000000)))))
+  (time (sum-regular (range 1000)))
+  (time (sum-recur (range 1000000)))
+  (println "Regular sum:" (sum-regular (range 1000)))
+  (println "Recursive sum:" (sum-recur (range 1000000))))
