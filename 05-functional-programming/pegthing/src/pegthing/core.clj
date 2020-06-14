@@ -13,11 +13,11 @@
 
 (def tri (tri*))
 
-(defn blablabla [num] (println num))
+(defn triangular?
+  "Is the number triangular or not?"
+  [number]
+  (= number (last (take-while #(>= number %) tri))))
 
-(defn test [] (println "test"))
-
-(defn blabla [num] (println "test" num))
 
 (defn -main
   "I don't do a whole lot ... yet."
