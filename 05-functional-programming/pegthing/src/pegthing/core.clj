@@ -4,6 +4,8 @@
 
 (declare successful-move prompt-move game-over query-rows)
 
+;; Creating the board
+
 (defn tri*
   "Generates lazy sequence of triangular numbers"
   ([] (tri* 0 1))
@@ -33,7 +35,7 @@
   [board max-pos pos neighbor destination]
   (if (<= destination max-pos)
     (reduce (fn [new-board [p1 p2]]
-              (assoc-in new-board [p1 :connection p2] neighbor))
+              (assoc-in new-board [p1 :connections p2] neighbor))
             board
             [[pos destination] [destination pos]])
     board))
@@ -77,6 +79,38 @@
     (reduce (fn [board pos] (add-pos board max-pos pos))
             initial-board
             (range 1 (inc max-pos)))))
+
+;; Moving pegs
+
+(defn pegged?
+  "Does the position have a peg in it?"
+  [board pos]
+  (get-in board [pos :pegged]))
+
+(defn remove-peg
+  "Take the peg at given position out of the board"
+  [board pos]
+  (assoc-in board [pos :pegged] false))
+
+(defn place-peg
+  "Put a peg in the board at given position"
+  [board pos]
+  (assoc-in board [pos :pegged] true))
+
+(defn move-peg
+  "Take a peg out of p1 and place it in p2"
+  [board p1 p2]
+  (place-peg (remove-peg board p1) p2))
+
+(defn valid-moves
+  "Return a map of all valid moves for pos, where the key
+   is the destination and the value is the jumped position"
+  [board pos]
+  (into {}
+        (filter (fn [[destination jumped]]
+                  (and (not (pegged? board destination))
+                       (pegged? board jumped)))
+                (get-in board [pos :connections]))))
 
 (defn -main
   "I don't do a whole lot ... yet."
