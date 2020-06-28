@@ -198,7 +198,10 @@
   [input-string]
   (re-seq #"[a-zA-Z]" input-string))
 
+(declare prompt-rows)
+
 (defn -main
-  "I don't do a whole lot ... yet."
+  "I don't do a whole lot... beside playing pegthing."
   []
-  (println "Hello, World!"))
+  (println "Get ready to play some pegthing!")
+  (prompt-rows))
