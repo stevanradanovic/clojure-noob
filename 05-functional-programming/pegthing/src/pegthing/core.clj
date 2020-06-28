@@ -174,6 +174,30 @@
   (doseq [row-num (range 1 (inc (:rows board)))]
     (println (render-row board row-num))))
 
+
+;; Player interaction
+
+(defn letter->pos
+  "Converts a letter string to the corresponding position number"
+  [letter]
+  (inc (- (int (first letter)) alpha-start)))
+
+(defn get-input
+  "Waits for user to enter text and hit enter,
+   then cleans the input"
+  ([] (get-input nil))
+  ([default]
+     (let [input (string/trim (read-line))]
+       (if (empty? input)
+         default
+         (string/lower-case input)))))
+
+(defn characters-as-strings
+  "Given a string, return a collection
+   consisting of each individual character"
+  [input-string]
+  (re-seq #"[a-zA-Z]" input-string))
+
 (defn -main
   "I don't do a whole lot ... yet."
   []
