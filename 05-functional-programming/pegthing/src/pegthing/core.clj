@@ -4,6 +4,7 @@
 
 (declare successful-move prompt-move game-over query-rows)
 
+
 ;; Creating the board
 
 (defn tri*
@@ -80,6 +81,7 @@
             initial-board
             (range 1 (inc max-pos)))))
 
+
 ;; Moving pegs
 
 (defn pegged?
@@ -129,6 +131,22 @@
   [board]
   (some (comp not-empty (partial valid-moves board))
         (map first (filter #(get (second %) :pegged) board))))
+
+
+;; Rendering and printing the board
+
+(def alpha-start 97)
+(def alpha-end 123)
+(def letters (map (comp str char) (range alpha-start alpha-end)))
+(def pos-chars 3)
+
+(defn render-pos
+  [board pos]
+  (str (nth letters (dec pos))
+       (if (get-in board [pos :pegged])
+         (colorize "0" :blue)
+         (colorize "-" :red))))
+
 
 (defn -main
   "I don't do a whole lot ... yet."
