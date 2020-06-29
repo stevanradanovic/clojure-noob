@@ -198,6 +198,33 @@
   [input-string]
   (re-seq #"[a-zA-Z]" input-string))
 
+(defn prompt-empty-peg
+  [board]
+  (println "Here's your board:")
+  (print-board board)
+  (println "Remove which peg? [e]")
+  (prompt-move (remove-peg board (letter->pos (get-input "e")))))
+
+(defn prompt-rows
+  []
+  (println "How many rows? [5]")
+  (let [rows (Integer. (get-input 5))
+        board (new-board rows)]
+    (prompt-empty-peg board)))
+
+(defn game-over
+  "Announce the game is over and prompt to play again"
+  [board]
+  (let [remaining-pegs (count (filter :pegged (vals board)))]
+    (println "Game over! You had" remaining-pegs "pegs left:")
+    (print-board board)
+    (println "Play again? y/n [y]")
+    (let [input (get-input "y")]
+      (prompt-rows)
+      (do
+        (println "Bye!")
+        (System/exit 0)))))
+
 (defn user-entered-invalid-move
   "Handles the next step after a user entered an invalid move"
   [board]
