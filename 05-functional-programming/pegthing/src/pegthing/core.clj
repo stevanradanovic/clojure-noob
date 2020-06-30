@@ -248,7 +248,6 @@
       (user-entered-valid-move new-board)
       (user-entered-invalid-move board))))
 
-(declare prompt-rows)
 
 (defn -main
   "I don't do a whole lot... beside playing pegthing."
