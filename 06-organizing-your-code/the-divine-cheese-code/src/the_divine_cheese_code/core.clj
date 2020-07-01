@@ -1,11 +1,6 @@
-(ns the-divine-cheese-code.core)
+(ns the-divine-cheese-code.core
+  (:require [the-divine-cheese-code.visualization.svg :as svg]))
 
-;; Ensure that the SVG code is evaluated
-(require 'the-divine-cheese-code.visualization.svg)
-
-;; Refer the namespace so that you don't have to use
-;; the fully qualified name to reference svg functions
-(refer 'the-divine-cheese-code.visualization.svg)
 
 (def heists [{:location "Cologne, Germany"
               :cheese-name "Archbishop Hildebold's Cheese Pretzel"
@@ -31,4 +26,5 @@
 (defn -main
   "I don't do a whole lot... but I can print some points."
   []
-  (println (points heists)))
+  (println "test2")
+  (println (svg/points heists)))
