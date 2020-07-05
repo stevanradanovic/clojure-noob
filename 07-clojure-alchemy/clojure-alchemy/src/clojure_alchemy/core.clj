@@ -7,6 +7,12 @@
         (first infixed)
         (last infixed)))
 
+(defmacro infix
+  [infixed]
+  (reduce (fn [temp-prefix elem])
+          ()
+          infixed))
+
 (defn -main
   "I don't do a whole lot... but I can infix."
   []
