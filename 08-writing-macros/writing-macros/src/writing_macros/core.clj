@@ -21,6 +21,21 @@
        (println "Sweet gorilla of Manila, this is good code:"
                 (quote ~good))))
 
+(defn criticize-code
+  [criticism code]
+  `(println ~criticism (quote ~code)))
+
+(defmacro code-critic-2
+  [bad good]
+  `(do ~(criticize-code "Cursed bacteria of Liberia, this is bad code:" bad)
+       ~(criticize-code "Sweet sacred boa of Western and Eastern Samoa, this is good code:" good)))
+
+(defmacro code-critic-3
+  [{:keys [bad good]}]
+  `(do ~@(map #(apply criticize-code %)
+              [["Great squid of Madrid, this is bad code:" bad]
+               ["Sweet gorilla of Manila, this is good code:" good]])))
+
 (def message "Good job!")
 
 (defmacro with-mischief
@@ -34,6 +49,8 @@
     `(let [~macro-message "Oh, big deal!"]
        ~@stuff-to-do
        (println "I still need to say: " ~macro-message))))
+
+
 
 (defn -main
   "I don't do a whole lot... but a few macros."
